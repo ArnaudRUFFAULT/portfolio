@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="portfolio@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="portfolio">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="cours_forum"/>
+    <schema id="4" parent="1" name="information_schema"/>
+    <schema id="5" parent="1" name="monsite"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="nainexo"/>
+    <schema id="8" parent="1" name="neozorus"/>
+    <schema id="9" parent="1" name="neozorus_v4"/>
+    <schema id="10" parent="1" name="performance_schema"/>
+    <schema id="11" parent="1" name="phpmyadmin"/>
+    <schema id="12" parent="1" name="street_fighter"/>
+    <table id="13" parent="2" name="article"/>
+    <table id="14" parent="2" name="categorie"/>
+    <table id="15" parent="2" name="droit"/>
+    <table id="16" parent="2" name="g_peut_d"/>
+    <table id="17" parent="2" name="grade"/>
+    <table id="18" parent="2" name="image"/>
+    <table id="19" parent="2" name="message"/>
+    <table id="20" parent="2" name="modification"/>
+    <table id="21" parent="2" name="network"/>
+    <table id="22" parent="2" name="proprietaire"/>
+    <table id="23" parent="2" name="section"/>
+    <table id="24" parent="2" name="user"/>
+    <column id="25" parent="13" name="a_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="13" name="a_date">
+      <Position>2</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="13" name="a_titre">
+      <Position>3</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="28" parent="13" name="a_texte">
+      <Position>4</Position>
+      <DataType>mediumtext|0</DataType>
+    </column>
+    <column id="29" parent="13" name="a_lien">
+      <Position>5</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="30" parent="13" name="a_validation">
+      <Position>6</Position>
+      <DataType>tinyint(1)|0</DataType>
+    </column>
+    <column id="31" parent="13" name="a_user_fk">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="32" parent="13" name="a_categorie_fk">
+      <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="33" parent="13" name="FK_article_c_identifiant">
+      <ColNames>a_categorie_fk</ColNames>
+    </index>
+    <index id="34" parent="13" name="FK_article_u_identifiant">
+      <ColNames>a_user_fk</ColNames>
+    </index>
+    <key id="35" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>a_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="36" parent="13" name="FK_article_u_identifiant">
+      <ColNames>a_user_fk</ColNames>
+      <RefSchemaName>portfolio</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>u_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="37" parent="13" name="FK_article_c_identifiant">
+      <ColNames>a_categorie_fk</ColNames>
+      <RefSchemaName>portfolio</RefSchemaName>
+      <RefTableName>categorie</RefTableName>
+      <RefColNames>c_id</RefColNames>
+    </foreign-key>
+    <column id="38" parent="14" name="c_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="39" parent="14" name="c_libelle">
+      <Position>2</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="40" parent="14" name="c_description">
+      <Position>3</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="41" parent="14" name="c_section_fk">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="42" parent="14" name="FK_categorie_s_identifiant">
+      <ColNames>c_section_fk</ColNames>
+    </index>
+    <key id="43" parent="14" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>c_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="44" parent="14" name="FK_categorie_s_identifiant">
+      <ColNames>c_section_fk</ColNames>
+      <RefSchemaName>portfolio</RefSchemaName>
+      <RefTableName>section</RefTableName>
+      <RefColNames>s_id</RefColNames>
+    </foreign-key>
+    <column id="45" parent="15" name="d_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="46" parent="15" name="d_libelle">
+      <Position>2</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <key id="47" parent="15" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>d_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="48" parent="16" name="g_d_droit_fk">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="16" name="g_d_grade_fk">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="50" parent="16" name="FK_gradePeutDroit_g_identifiant">
+      <ColNames>g_d_grade_fk</ColNames>
+    </index>
+    <key id="51" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>g_d_droit_fk
+g_d_grade_fk</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="52" parent="16" name="FK_gradePeutDroit_d_identifiant">
+      <ColNames>g_d_droit_fk</ColNames>
+      <RefSchemaName>portfolio</RefSchemaName>
+      <RefTableName>droit</RefTableName>
+      <RefColNames>d_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="53" parent="16" name="FK_gradePeutDroit_g_identifiant">
+      <ColNames>g_d_grade_fk</ColNames>
+      <RefSchemaName>portfolio</RefSchemaName>
+      <RefTableName>grade</RefTableName>
+      <RefColNames>g_id</RefColNames>
+    </foreign-key>
+    <column id="54" parent="17" name="g_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="55" parent="17" name="g_libelle">
+      <Position>2</Position>
+      <DataType>char(250)|0</DataType>
+    </column>
+    <key id="56" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>g_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="57" parent="18" name="i_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="58" parent="18" name="i_path">
+      <Position>2</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="59" parent="18" name="i_article_fk">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="60" parent="18" name="FK_image_a_identifiant">
+      <ColNames>i_article_fk</ColNames>
+    </index>
+    <key id="61" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>i_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="62" parent="18" name="FK_image_a_identifiant">
+      <ColNames>i_article_fk</ColNames>
+      <RefSchemaName>portfolio</RefSchemaName>
+      <RefTableName>article</RefTableName>
+      <RefColNames>a_id</RefColNames>
+    </foreign-key>
+    <column id="63" parent="19" name="m_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="64" parent="19" name="m_nom">
+      <Position>2</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="65" parent="19" name="m_prenom">
+      <Position>3</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="66" parent="19" name="m_mail">
+      <Position>4</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="67" parent="19" name="m_telephone">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="68" parent="19" name="m_texte">
+      <Position>6</Position>
+      <DataType>mediumtext|0</DataType>
+    </column>
+    <column id="69" parent="19" name="m_titre">
+      <Position>7</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="70" parent="19" name="m_user_fk">
+      <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="71" parent="19" name="FK_message_u_identifiant">
+      <ColNames>m_user_fk</ColNames>
+    </index>
+    <key id="72" parent="19" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>m_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="73" parent="19" name="FK_message_u_identifiant">
+      <ColNames>m_user_fk</ColNames>
+      <RefSchemaName>portfolio</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>u_id</RefColNames>
+    </foreign-key>
+    <column id="74" parent="20" name="m_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="75" parent="20" name="m_articke_fk">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="76" parent="20" name="m_titre">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="77" parent="20" name="m_texte">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="78" parent="20" name="m_lien">
+      <Position>5</Position>
+      <DataType>varchar(250)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="79" parent="20" name="m_user_fk">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="80" parent="20" name="m_user_fk">
+      <ColNames>m_user_fk</ColNames>
+    </index>
+    <key id="81" parent="20" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>m_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="82" parent="20" name="modification_ibfk_1">
+      <ColNames>m_user_fk</ColNames>
+      <RefSchemaName>portfolio</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>u_id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="83" parent="21" name="n_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="84" parent="21" name="n_libelle">
+      <Position>2</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="85" parent="21" name="n_url">
+      <Position>3</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="86" parent="21" name="n_logo">
+      <Position>4</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <key id="87" parent="21" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>n_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="88" parent="22" name="p_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="89" parent="22" name="nom">
+      <Position>2</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="90" parent="22" name="prenom">
+      <Position>3</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="91" parent="22" name="ville">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="92" parent="22" name="codePostal">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="93" parent="22" name="adresse">
+      <Position>6</Position>
+      <DataType>mediumtext|0</DataType>
+    </column>
+    <key id="94" parent="22" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>p_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="95" parent="23" name="s_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="96" parent="23" name="s_libelle">
+      <Position>2</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="97" parent="23" name="s_texte">
+      <Position>3</Position>
+      <DataType>mediumtext|0</DataType>
+    </column>
+    <column id="98" parent="23" name="s_image">
+      <Position>4</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <key id="99" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>s_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="100" parent="24" name="u_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="101" parent="24" name="u_nom">
+      <Position>2</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="102" parent="24" name="u_prenom">
+      <Position>3</Position>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="103" parent="24" name="u_pseudo">
+      <Position>4</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <column id="104" parent="24" name="u_mail">
+      <Position>5</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="105" parent="24" name="u_password">
+      <Position>6</Position>
+      <DataType>varchar(250)|0</DataType>
+    </column>
+    <column id="106" parent="24" name="u_newsletter">
+      <Position>7</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="107" parent="24" name="u_grade_fk">
+      <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="108" parent="24" name="FK_user_g_identifiant">
+      <ColNames>u_grade_fk</ColNames>
+    </index>
+    <key id="109" parent="24" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>u_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="110" parent="24" name="FK_user_g_identifiant">
+      <ColNames>u_grade_fk</ColNames>
+      <RefSchemaName>portfolio</RefSchemaName>
+      <RefTableName>grade</RefTableName>
+      <RefColNames>g_id</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>

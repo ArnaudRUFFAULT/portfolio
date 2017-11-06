@@ -1,0 +1,9 @@
+body {
+	background-color: gray;
+	color:white;
+}
+
+.errorSaisi{
+	color:#D36565;
+	font-weight: bolder;
+}
