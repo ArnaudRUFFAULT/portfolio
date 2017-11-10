@@ -1,3 +1,4 @@
+<!-- Ce layout gere l'affichage de toutes les erreurs repertorié par errorController-->
 <!DOCTYPE html>
 <html>
 <head>

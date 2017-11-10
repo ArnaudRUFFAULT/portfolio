@@ -37,5 +37,22 @@ define('VIEWS','.' . DS . 'Views' . DS);
 define('CSS_PATH', '.' . DS . 'assets' . DS . 'css' .DS );
 define('CSS_EXTENSION','Style.css' );
 
+//Constante du formulaire d'inscription
+//Pseudo
+define('MIN_PSEUDO', 4);
+define('MAX_PSEUDO', 20);
+//Nom
+define('MIN_NOM', 2);
+define('MAX_NOM', 60);
+//Prenom
+define('MIN_PRENOM', 2);
+define('MAX_PRENOM', 60);
+//Password
+define('MIN_PASSWORD', 5);
+define('MAX_PASSWORD', 20);
+//Email
+define('MIN_MAIL', 6);
+define('MAX_MAIL', 129);
+
 
 

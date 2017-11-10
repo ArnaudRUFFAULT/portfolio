@@ -1,11 +1,33 @@
 <?php
 class Categorie{
+    /**
+     * [$id description]Identifiant de la categorie
+     * @var [type] int
+     */
     private $id;
+
+    /**
+     * [$libelle description] Libelle de la categorie
+     * @var [type] string
+     */
     private $libelle;
+
+    /**
+     * [$description description] Description de la catégorie
+     * @var [type] string
+     */
     private $description;
+
+    /**
+     * [$idSection description] Identifiant de la section à laquelle appartient la categorie
+     * @var [type] int
+     */
     private $idSection;
 
-
+    /**
+     * [__construct description] Instancie une categorie
+     * @param array $data [description] Ce tableau associatif doit contenir toutes les informations pour instancier une categorie
+     */
     public function __construct(array $data){
         $this->id = $data['c_id'];
         $this->libelle = $data['c_libelle'];
@@ -14,7 +36,7 @@ class Categorie{
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -55,7 +77,7 @@ class Categorie{
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getIdSection()
     {
@@ -63,13 +85,10 @@ class Categorie{
     }
 
     /**
-     * @param mixed $idSection
+     * @param int $idSection
      */
     public function setIdSection($idSection)
     {
         $this->idSection = $idSection;
     }
-
-
-
 }

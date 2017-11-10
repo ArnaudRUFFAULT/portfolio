@@ -1,16 +1,58 @@
 <?php
 class Article{
+    /**
+     * [$id description] Identifiant de l'article
+     * @var [type] int
+     */
     private $id;
+
+    /**
+     * [$date description] Date de la publication de l'article AAAA-MM-DD
+     * @var [type] date
+     */
     private $date;
+
+    /**
+     * [$titre description] Titre de l'article
+     * @var [type] string
+     */
     private $titre;
+
+    /**
+     * [$contenu description] Contenu de l'article
+     * @var [type] string
+     */
     private $contenu;
+
+    /**
+     * [$lien description] Lien qui redirige vers l'article
+     * @var [type] string
+     */
     private $lien;
+
+    /**
+     * [$validation description] Determine c'est un article est visible ou bien en attente de révision
+     * @var [type] bool
+     */
     private $validation;
+
+    /**
+     * [$idAuteur description] Identifiant de l'auteur de l'article
+     * @var [type] int
+     */
     private $idAuteur;
+
+    /**
+     * [$idCategorie description] Identifiant de la categorie de l'article(ex:1 represente la categorie "Intégration / Développement Front-End")
+     * @var [type] int
+     */
     private $idCategorie;
 
 
-
+    /**
+     * [__construct description] Instancie un article
+     * @param array $data [description] Ce tableau associatif doit contenir toutes les informations pour instancier un article
+     */
     public function __construct(array $data){
         $this->id = $data['a_id'];
         $this->date = $data['a_date'];
@@ -23,7 +65,7 @@ class Article{
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -33,7 +75,7 @@ class Article{
 
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDate()
     {
@@ -41,7 +83,7 @@ class Article{
     }
 
     /**
-     * @param mixed $date
+     * @param mixed string
      */
     public function setDate($date)
     {
@@ -89,7 +131,7 @@ class Article{
     }
 
     /**
-     * @param mixed $lien
+     * @param string $lien
      */
     public function setLien($lien)
     {
@@ -105,7 +147,7 @@ class Article{
     }
 
     /**
-     * @param mixed $validation
+     * @param bool $validation
      */
     public function setValidation($validation)
     {
@@ -113,7 +155,7 @@ class Article{
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getIdAuteur()
     {
@@ -130,7 +172,7 @@ class Article{
     }
 
     /**
-     * @param mixed $idCategorie
+     * @param int $idCategorie
      */
     public function setIdCategorie($idCategorie)
     {

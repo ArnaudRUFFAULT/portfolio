@@ -1,10 +1,27 @@
 <?php
 class Section{
+    /**
+     * [$id description] identifiant de la Section
+     * @var [type] int
+     */
     private $id;
+
+    /**
+     * [$libelle description] Libelle de la section
+     * @var [type] string
+     */
     private $libelle;
+
+    /**
+     * [$texte description] Description de la section
+     * @var [type] string
+     */
     private $texte;
 
-
+    /**
+     * [__construct description]Instancie une section
+     * @param array $data [description] Ce tableau associatif doit contenir toutes les informations pour instancier une section
+     */
     public function __construct(array $data){
         $this->id = $data['s_id'];
         $this->libelle = $data['s_libelle'];
@@ -12,7 +29,7 @@ class Section{
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -51,5 +68,4 @@ class Section{
     {
         $this->texte = $texte;
     }
-
 }

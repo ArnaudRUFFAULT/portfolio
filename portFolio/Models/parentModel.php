@@ -18,6 +18,10 @@ class parentModel extends coreModel{
 		return $mesNetworks;	
 	}
 
+	/**
+	 * [getProprietaireDB description]Cherche dans la BDD le proprietaire, on l'instancie grâce à la classe Proprietaire , on le retourne
+	 * @return [object] [description] instance de Proprietaire
+	 */
     public function getProprietaireDB(){
         $sql = 'SELECT * FROM proprietaire WHERE p_id = 1';
         $result = $this->makeselect($sql);

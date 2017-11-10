@@ -1,18 +1,32 @@
 <?php
+//On demarre un session
+session_start();
+//Si la variable deco dans le get existe et qu'elle vaut portfolio, on ecrase toutes les info du portfolio enregistre en session
+if(isset($_GET['deco'])){
+    switch ($_GET['deco']) {
+        case 'portfolio':
+            unset($_SESSION['portfolio']);
+            header('Location:index.php');
+            exit;
+    }
+}
 //On inclu notre fichier INI avec toutes les constantes nécessaires
 include('config.php');
 //On fait appel à notre autoload
 spl_autoload_register(function($className){
 	$folder = CLASSES_PATH;
 	$extension = CLASSES_EXTENSION;
+    //l'Autoload charge les Controllers
 	if (strpos($className, 'Controller') !== false) {
 		$folder = CONTROLLERS_PATH;
 		$extension = CONTROLLERS_EXTENSION;
 	}
+    //l'Autoload charge les Modeles
 	else if (strpos($className, 'Model') !== false) {
 		$folder = MODELS_PATH;
 		$extension = MODELS_EXTENSION;
 	}
+    //l'Autoload charge les Gestionnaires
     else if (strpos($className, 'Handler') !== false) {
         $folder = HANDLER_PATH;
         $extension = HANDLER_EXTENSION;
@@ -22,7 +36,7 @@ spl_autoload_register(function($className){
 		include($filename);
 	}
 });
-//Notre index indique un controller et une action par defaut si le get est vide
+//Notre index indique un controller et une action par defaut si le get est vide, soit l'acceuil
 $params = array('controller'=>'acceuil','action'=>'afficherAcceuil');
 
 //Si le get n'est pas vide, on ecrase les valeurs par defaut
@@ -42,15 +56,19 @@ if((!empty($_GET) && isset($_GET['controller'])) ||empty($_GET) ) {
         if (method_exists($controller, $actionName)) {
             $controller->$actionName();
         }
+        //Si la methode n'est pas connu, on génère le controller d'erreur qui va afficher un message personnalise
         else {
             $controller = new errorController();
             $controller->actionInexistanteAction();
         }
-    } else {
+    }
+    //Si le controller n'est pas connu, on génère le controller d'erreur qui va afficher un message personnalise
+    else {
         $controller = new errorController();
         $controller->controllerInexistantAction();
     }
 }
+//Si la cle controller n'existe pas dans l'url, on génère le controller d'erreur qui va afficher un message personnalise
 else{
     $controller = new errorController();
     $controller->pageExistePasAction();

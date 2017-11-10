@@ -1,0 +1,1 @@
+<p>Votre inscription est terminé! Vous pouvez dès à présent vous connecter</p>

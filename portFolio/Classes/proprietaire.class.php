@@ -4,6 +4,17 @@ class Proprietaire{
     private $nom;
     private $prenom;
     private $ville;
+    private $codePostal;
+    private $adresse;
+
+    public function __construct(array $data){
+        $this->id = $data['p_id'];
+        $this->nom = $data['nom'];
+        $this->prenom = $data['prenom'];
+        $this->ville = $data['ville'];
+        $this->codePostal = $data['codePostal'];
+        $this->adresse = $data['adresse'];
+    }
 
     /**
      * @return mixed
@@ -100,17 +111,4 @@ class Proprietaire{
     {
         $this->adresse = $adresse;
     }
-    private $codePostal;
-    private $adresse;
-
-    public function __construct(array $data){
-        $this->id = $data['p_id'];
-        $this->nom = $data['nom'];
-        $this->prenom = $data['prenom'];
-        $this->ville = $data['ville'];
-        $this->codePostal = $data['codePostal'];
-        $this->adresse = $data['adresse'];
-    }
-
-
 }
