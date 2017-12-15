@@ -13,9 +13,10 @@ class utilisateurController extends parentController {
 
                     $header = $this->getHeader();
 
-                    ob_start();
-                    require (VIEWS.'Utilisateur/utilisateurInscriptionView.php');
-                    $contenu = ob_get_clean();
+                    $variables = array();
+                    $variables['error'] = $error;
+
+                    $contenu = $this->loadView(VIEWS.'Utilisateur/utilisateurInscriptionView.php',$variables);
 
                     $footer = $this->getFooter();
 
@@ -48,7 +49,10 @@ class utilisateurController extends parentController {
 
         $header = $this->getHeader();
 
-        $contenu = $this->loadView(VIEWS.'Utilisateur/utilisateurConnexionView.php');
+        $variables = array();
+        $variables['error'] = $error;
+
+        $contenu = $this->loadView(VIEWS.'Utilisateur/utilisateurConnexionView.php',$variables);
 
         $footer = $this->getFooter();
 
@@ -60,31 +64,47 @@ class utilisateurController extends parentController {
      * @return [type] [description]
      */
     public function inscriptionAction(){
-        $handler = new inscriptionHandler($this->data);
-        //On envoie les informations du formulaire d'inscription au gestionnaire correspondant
-        $error = $handler->checkInfo();
+        $handler = new formHandler($this->data);
+        $error = $handler->checkInfoInscription();
         //Si le gestionnaire nous renvoie un tableau vide, c'est qu'il n'y a pas eu d'erreur dans les saisis de l'utilisateur
         if(empty($error)){
-            $model = new utilisateurModel;
-            $cleanData=array();
-            foreach ($this->data as $key => $value) {
-                //On hash le mot de passe pour plus de securite
-                if($key == 'password'){
-                    $cleanData[$key] = password_hash(htmlentities($value),PASSWORD_DEFAULT);
+            try{
+                $model = new utilisateurModel;
+                try{
+                    if($model->checkMailBDD($this->data['mail'])){
+                        $cleanData=array();
+                        foreach ($this->data as $key => $value) {
+                            //On hash le mot de passe pour plus de securite
+                            if($key == 'password'){
+                                $cleanData[$key] = password_hash(htmlentities($value),PASSWORD_DEFAULT);
+                            }
+                            else{
+                                //On fait un htmlentities pour nettoyer le contenu qui ne pourra plus etre interprete comme du html
+                                $cleanData[$key]=htmlentities($value);
+                            }
+                        }
+                        //Si l'enregistrement a réussi
+                        if($model->insertUserBDD($cleanData)){
+                            //On appelle la view d'inecription reussite
+                            $this->inscriptionValideeAffichageAction();
+                        }
+                        else{
+                            throw new Exception("Probleme avec la base de donnée, réessayer plus tard");
+                        }          
+                    }
+                    else{
+                        $error['mail']= 'ce mail est associé à un autre utilisateur';
+                        $this->inscriptionAffichageAction($error);
+                    }
                 }
-                else{
-                    //On fait un htmlentities pour nettoyer le contenu qui ne pourra plus etre interprete comme du html
-                    $cleanData[$key]=htmlentities($value);
+                catch(Exception $e){
+                    $errorController= new ErrorController();
+                    $errorController->error($e->getMessage(),'Base de Données indisponible');
                 }
             }
-            //Si l'enregistrement a réussi
-            if($model->insertUserBDD($cleanData)){
-                //On appelle la view d'inecription reussite
-                $this->inscriptionValideeAffichageAction();
-            }
-            else{
-                //Sinon on appelle la view qui indique que l'enregistrement n'a pas pu être effectue
-                include('index.php?controller=error&action=errorInscription');
+            catch(Exception $e){
+                $errorController= new ErrorController();
+                $errorController->error($e->getMessage(),'Base de Données indisponible');
             }
         }
         //Si le gestionnaire retourne un tableau non vide, c'est qu'il y a eu des erreurs dans le formulaire, donc on renvoie la page d'inscription avec le tableau des erreur pour pouvoir les afficher
@@ -98,9 +118,9 @@ class utilisateurController extends parentController {
      * @return [type] [description]
      */
     public function connexionAction(){
-        $handler = new connexionHandler($this->data);
+        $handler = new formHandler($this->data);
         //On envoie les informations du formulaire d'inscription au gestionnaire correspondant
-        $error = $handler->checkInfo();
+        $error = $handler->checkDataConnexion();
         //Si le gestionnaire nous renvoie un tableau vide, c'est qu'il n'y a pas eu d'erreurs dans les saisies de l'utilisateur
         if(empty($error)){
             $cleanData = array();

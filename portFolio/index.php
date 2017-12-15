@@ -59,17 +59,17 @@ if((!empty($_GET) && isset($_GET['controller'])) ||empty($_GET) ) {
         //Si la methode n'est pas connu, on génère le controller d'erreur qui va afficher un message personnalise
         else {
             $controller = new errorController();
-            $controller->actionInexistanteAction();
+            $controller->error404();
         }
     }
     //Si le controller n'est pas connu, on génère le controller d'erreur qui va afficher un message personnalise
     else {
         $controller = new errorController();
-        $controller->controllerInexistantAction();
+        $controller->error404();
     }
 }
 //Si la cle controller n'existe pas dans l'url, on génère le controller d'erreur qui va afficher un message personnalise
 else{
     $controller = new errorController();
-    $controller->pageExistePasAction();
+    $controller->error404();
 }

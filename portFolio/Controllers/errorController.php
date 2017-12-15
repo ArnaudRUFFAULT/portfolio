@@ -1,67 +1,5 @@
 <?php
 class errorController extends parentController{
-
-	/*
-	 ** @param
-	 ** @action créer un message d'erreur si la page n'existe pas invoque la view correspondante
-	 ** @return
-	  */
-	public function pageExistePasAction(){
-	    $titre = 'Erreur';
-
-	    $header = $this->getHeader();
-
-        $error = 'La page demandée n\'existe pas';
-
-	    ob_start();
-		require(VIEWS.'Error'. DS . 'error.php');
-		$contenu = ob_get_clean();
-
-		$footer = $this->getFooter();
-
-		require (ERROR);
-	}
-
-    /**
-     * [controllerInexistantAction description] créer un message d'erreur si le controller n'existe pas invoque la view correspondante
-     * @return [type] [description]
-     */
-    public function controllerInexistantAction(){
-        $titre = 'Erreur';
-
-        $header = $this->getHeader();
-
-        $error = 'Le controller spécifié n\'existe pas';
-
-        ob_start();
-        require(VIEWS.'Error'. DS . 'error.php');
-        $contenu = ob_get_clean();
-
-        $footer = $this->getFooter();
-
-        require (ERROR);
-    }
-
-    /**
-     * [actionInexistanteAction description] créer un message d'erreur si l'action n'existe pas et invoque la view correspondante
-     * @return [type] [description]
-     */
-    public function actionInexistanteAction(){
-        $titre = 'Erreur';
-
-        $header = $this->getHeader();
-
-        $error = 'L\'action spécifiée n\'existe pas';
-
-        ob_start();
-        require(VIEWS.'Error'. DS . 'error.php');
-        $contenu = ob_get_clean();
-
-        $footer = $this->getFooter();
-
-        require (ERROR);
-    }
-
     /**
      * [errorInscriptionAction description]créer un message d'erreur si l'inscription a echoue et invoque la view correspondante
      * @return [type] [description]
@@ -80,6 +18,50 @@ class errorController extends parentController{
         $footer = $this->getFooter();
 
         require (ERROR);
+    }
+
+    /**
+     * Affiche une view avec un message d'erreur standard, sans précision
+     * @return 
+     */
+    public function error($message = null,$titre = null){
+            $this->loadErrorView($message,$titre);
+    }    
+    
+    /**
+     * Affiche une page d'erreur 404
+     */
+    public function error404(){
+        $this->loadErrorView('Cette page n\'existe pas', 'Error 404', 404);    
+    }
+
+    /**
+     * Crée un view qui affiche une erreur
+     * @param  string $errorMessage message descriptif de l'érreur
+     * @param  string $titre        titre de la page
+     * @param  [int|null] $codeError    Definit le code d'erreur http
+     */
+    private function loadErrorView($errorMessage = 'Une erreur interne c\'est produite, veuillez réessayer ultérieurement.',$titre = 'Error',$codeError = null){
+        if(isset($codeError)){
+            http_response_code($codeError);
+        }
+
+
+        $layoutVariables = array();
+
+        $layoutVariables['titre'] = $titre;
+
+
+        $layoutVariables['header'] = $this->getHeader();
+
+        $variables = array();
+        $variables['errorMessage'] = $errorMessage;
+
+        $layoutVariables['contenu'] = $this->loadView('./Views/Error/error.php',$variables);
+
+        $layoutVariables['footer'] = $this->getFooter();
+
+        $this->loadView(ERROR,$layoutVariables, true);
     }
 }
 		

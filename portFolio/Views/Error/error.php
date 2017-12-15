@@ -1,2 +1,5 @@
+<!DOCTYPE html>
+<html>
+<head>
+<p><?=$errorMessage?></p>
 
-<p><?= $error ?></p>
