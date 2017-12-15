@@ -76,27 +76,6 @@ abstract class parentController extends coreController{
         $this->proprietaire = $model -> getProprietaireDB();
     }
 
-    /**
-     * [getHeader description] génère le header et le met dans une variable
-     * @return [string] [description] 
-     */
-	protected function getHeader(){
-        ob_start();
-        require (HEADER);
-        $header = ob_get_clean();
-        return $header;
-    }
-	/*
-	 ** @param
-	 ** @action cree dans une variable le footer
-	 ** @return
-	  */
-	protected function getFooter(){
-			ob_start();
-			require (FOOTER);
-			$footer = ob_get_clean();
-			return $footer;
-	}
 
 	protected function loadView($nameView, $variables = array(), $noBuffer = false){
 		extract($variables);

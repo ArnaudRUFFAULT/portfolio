@@ -18,20 +18,19 @@ class servicesController extends parentController {
      * @return [type] [description]
      */
     public function afficherServicesAction(){
-        $titre = $this->section->getLibelle();
+        $layoutVariable['titre'] = $this->section->getLibelle();
 
-        $header = $this->getHeader();
+        $layoutVariable['header'] = $this->loadView(HEADER);
 
         $model = new articleModel();
 
         $variables = array();
         $variables['mesServices'] = $model->getServicesBDD();
 
-        $contenu = $this->loadView(VIEWS.'Services/servicesView.php', $variables);
+        $layoutVariable['contenu'] = $this->loadView(VIEWS.'Services/servicesView.php', $variables);
 
-        $footer = $this->getFooter();
+        $layoutVariable['footer'] = $this->loadView(FOOTER);
 
-        require(COMMON);
-
+        $this->loadView(COMMON, $layoutVariable, true);
     }
 }

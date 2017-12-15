@@ -18,25 +18,20 @@ class acceuilController extends parentController {
      */
     public function afficherAcceuilAction(){
 
-        $titre = $this->section->getLibelle();//Titre de l'acceul
+        $layoutVariable['titre'] = $this->section->getLibelle();//Titre de l'acceul
 
-        $header = $this->getHeader();//En tête de l'acceuil
+        $layoutVariable['header'] = $this->loadView(HEADER);
 
         $model = new articleModel();//Connexion BDD
 
         $variables = array();
         $variables['mesRealisations'] = $model->getRealisationsBDD(5);//On recupere les 5 dernieres realisations
 
-        $contenu = $this->loadView(VIEWS.'Accueil/accueilView.php', $variables);
+        $layoutVariable['contenu'] = $this->loadView(VIEWS.'Accueil/accueilView.php', $variables);
 
-        /*//On génère le contenu de la vue
-        ob_start();
-        require (VIEWS.'Accueil/accueilView.php');
-        $contenu = ob_get_clean();*/
+        $layoutVariable['footer'] = $this->loadView(FOOTER);
 
-        $footer = $this->getFooter();//Footer de l'acceuil
-
-        require(COMMON);//on appelle le layout commun
+        $this->loadView(COMMON, $layoutVariable, true);//on appelle le layout commun
     }
 
 }

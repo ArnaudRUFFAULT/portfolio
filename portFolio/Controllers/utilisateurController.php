@@ -9,18 +9,18 @@ class utilisateurController extends parentController {
      * @return [type]            [description]
      */
     public function inscriptionAffichageAction(array $error = null){
-            $titre = 'Inscription';
+                    $layoutVariable['titre'] = 'Inscription';
 
-                    $header = $this->getHeader();
+                    $layoutVariable['header'] = $this->loadView(HEADER);
 
                     $variables = array();
                     $variables['error'] = $error;
 
-                    $contenu = $this->loadView(VIEWS.'Utilisateur/utilisateurInscriptionView.php',$variables);
+                    $layoutVariable['contenu'] = $this->loadView(VIEWS.'Utilisateur/utilisateurInscriptionView.php',$variables);
 
-                    $footer = $this->getFooter();
+                    $layoutVariable['footer'] = $this->loadView(FOOTER);
 
-                    require(COMMON);
+                    $this->loadView(COMMON,$layoutVariable, true);
     }
 
  /**
@@ -28,15 +28,15 @@ class utilisateurController extends parentController {
   * @return [type] [description]
   */
     public function inscriptionValideeAffichageAction(){
-            $titre = 'Inscription Réussite';
+        $layoutVariable['titre'] = 'Connexion';
 
-                    $header = $this->getHeader();
+        $layoutVariable['header'] = $this->loadView(HEADER);
 
-                    $contenu = $this->loadView(VIEWS.'Utilisateur/utilisateurInscriptionReussiteView.php');
+        $layoutVariable['contenu'] = $this->loadView(VIEWS.'Utilisateur/utilisateurInscriptionReussiteView.php');
 
-                    $footer = $this->getFooter();
+        $layoutVariable['footer'] = $this->loadView(FOOTER);
 
-                    require(COMMON);
+        $this->loadView(COMMON,$layoutVariable,true);
     }
 
     /**
@@ -45,18 +45,18 @@ class utilisateurController extends parentController {
      * @return [type]            [description]
      */
     public function connexionAffichageAction(array $error = null){
-        $titre = 'Connexion';
+        $layoutVariable['titre'] = 'Connexion';
 
-        $header = $this->getHeader();
+        $layoutVariable['header'] = $this->loadView(HEADER);
 
         $variables = array();
         $variables['error'] = $error;
 
-        $contenu = $this->loadView(VIEWS.'Utilisateur/utilisateurConnexionView.php',$variables);
+        $layoutVariable['contenu'] = $this->loadView(VIEWS.'Utilisateur/utilisateurConnexionView.php',$variables);
 
-        $footer = $this->getFooter();
+        $layoutVariable['footer'] = $this->loadView(FOOTER);
 
-        require(COMMON);
+        $this->loadView(COMMON,$layoutVariable,true);
     }
 
     /**

@@ -17,38 +17,37 @@ class realisationsController extends parentController {
      * @return [type] [description]
      */
     public function afficherRealisationsAction(){
-        $titre = ucfirst($this->section->getLibelle());
+        $layoutVariable['titre'] = ucfirst($this->section->getLibelle());
 
-        $header = $this->getHeader();
+        $layoutVariable['header'] = $this->loadView(HEADER);
 
         $variables = array();
         $variables['mesRealisations'] = $this->getRealisations();
 
-        $contenu = $this->loadView(VIEWS.'Realisations/RealisationsView.php', $variables);
+        $layoutVariable['contenu'] = $this->loadView(VIEWS.'Realisations/RealisationsView.php', $variables);
 
 
-        $footer = $this->getFooter();
+        $layoutVariable['footer'] = $this->loadView(FOOTER);
 
-        require(COMMON);
+        $this->loadView(COMMON, $layoutVariable, true);
 
     }
 
     public function afficherFicheRealisationAction(){
-        $titre = ucfirst($this->section->getLibelle());
+        $layoutVariable['titre'] = ucfirst($this->section->getLibelle());
 
         $model = new articleModel();
 
-        $header = $this->getHeader();
+        $layoutVariable['header'] = $this->loadView(HEADER);
 
         $variables = array();
         $variables['maRealisation'] = $model->getFicheRealisationBDD($this->parameters['id']);
 
-        $contenu = $this->loadView(VIEWS.'Realisations/ficheRealisationView.php', $variables);
+        $layoutVariable['contenu'] = $this->loadView(VIEWS.'Realisations/ficheRealisationView.php', $variables);
 
-        $footer = $this->getFooter();
+        $layoutVariable['footer'] = $this->loadView(FOOTER);
 
-        require(COMMON);
-
+        $this->loadView(COMMON, $layoutVariable, true);
     }
 
     /**

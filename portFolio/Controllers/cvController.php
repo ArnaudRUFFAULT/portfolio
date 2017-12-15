@@ -17,19 +17,19 @@ class cvController extends parentController {
      * @return [type] [description]
      */
     public function afficherCvAction(){
-        $titre = ucfirst($this->section->getLibelle());
+        $layoutVariable['titre'] = ucfirst($this->section->getLibelle());
 
-        $header = $this->getHeader();
+        $layoutVariable['header'] = $this->loadView(HEADER);
 
         $model = new articleModel();
 
         $variables = array();
         $variables['monCV'] = $model->getCvBDD();
 
-        $contenu = $this->loadView(VIEWS.'Cv/cvView.php', $variables);
+        $layoutVariable['contenu'] = $this->loadView(VIEWS.'Cv/cvView.php', $variables);
 
-        $footer = $this->getFooter();
+        $layoutVariable['footer'] = $this->loadView(FOOTER);
 
-        require(COMMON);
+        $this->loadView(COMMON, $layoutVariable, true);
     }
 }

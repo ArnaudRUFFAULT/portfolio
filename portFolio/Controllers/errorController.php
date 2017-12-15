@@ -46,20 +46,18 @@ class errorController extends parentController{
             http_response_code($codeError);
         }
 
-
         $layoutVariables = array();
 
         $layoutVariables['titre'] = $titre;
 
-
-        $layoutVariables['header'] = $this->getHeader();
+        $layoutVariables['header'] = $this->loadView(HEADER);
 
         $variables = array();
         $variables['errorMessage'] = $errorMessage;
 
         $layoutVariables['contenu'] = $this->loadView('./Views/Error/error.php',$variables);
 
-        $layoutVariables['footer'] = $this->getFooter();
+        $layoutVariables['footer'] = $this->loadView(FOOTER);
 
         $this->loadView(ERROR,$layoutVariables, true);
     }
