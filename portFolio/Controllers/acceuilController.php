@@ -24,12 +24,15 @@ class acceuilController extends parentController {
 
         $model = new articleModel();//Connexion BDD
 
-        $mesRealisations = $model->getRealisationsBDD(5);//On recupere les 5 dernieres realisations
+        $variables = array();
+        $variables['mesRealisations'] = $model->getRealisationsBDD(5);//On recupere les 5 dernieres realisations
 
-        //On génère le contenu de la vue
+        $contenu = $this->loadView(VIEWS.'Accueil/accueilView.php', $variables);
+
+        /*//On génère le contenu de la vue
         ob_start();
         require (VIEWS.'Accueil/accueilView.php');
-        $contenu = ob_get_clean();
+        $contenu = ob_get_clean();*/
 
         $footer = $this->getFooter();//Footer de l'acceuil
 

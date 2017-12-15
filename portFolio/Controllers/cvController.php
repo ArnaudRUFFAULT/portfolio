@@ -22,11 +22,11 @@ class cvController extends parentController {
         $header = $this->getHeader();
 
         $model = new articleModel();
-        $monCV = $model->getCvBDD();
 
-        ob_start();
-        require (VIEWS.'Cv/cvView.php');
-        $contenu = ob_get_clean();
+        $variables = array();
+        $variables['monCV'] = $model->getCvBDD();
+
+        $contenu = $this->loadView(VIEWS.'Cv/cvView.php', $variables);
 
         $footer = $this->getFooter();
 

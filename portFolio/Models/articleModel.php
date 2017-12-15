@@ -24,6 +24,20 @@ class articleModel extends parentModel{
         return $mesRealisations;
     }
 
+    public function getFicheRealisationBDD($id){
+
+        $sql = 'SELECT * FROM article INNER JOIN categorie ON a_categorie_fk = categorie.c_id INNER JOIN section ON c_section_fk = s_id WHERE s_id = 3 AND a_id = '.htmlentities($id);
+
+        $result = $this->makeselect($sql);
+
+        if (empty($result)) {
+            return NULL;
+        }
+        $maFicheRealisation = new Article($result[0]);
+        
+        return $maFicheRealisation;
+    }
+
     /**
      * [getServicesBDD description]On récupère dans la BDD tous les articles de la section Service, puis on les instancie
      * @return [array] [description]instances de services dans un tableau

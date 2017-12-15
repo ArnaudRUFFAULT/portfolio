@@ -19,6 +19,12 @@ class Article{
     private $titre;
 
     /**
+     * [$titre description] Description de l'article
+     * @var [type] string
+     */
+    private $description;
+
+    /**
      * [$contenu description] Contenu de l'article
      * @var [type] string
      */
@@ -57,6 +63,7 @@ class Article{
         $this->id = $data['a_id'];
         $this->date = $data['a_date'];
         $this->titre = $data['a_titre'];
+        $this->description = $data['a_description'];
         $this->contenu = $data['a_texte'];
         $this->lien = $data['a_lien'];
         $this->validation = $data['a_validation'];
@@ -104,6 +111,19 @@ class Article{
     public function setTitre($titre)
     {
         $this->titre = $titre;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $titre
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**

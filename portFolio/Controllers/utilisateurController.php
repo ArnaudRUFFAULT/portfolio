@@ -31,9 +31,7 @@ class utilisateurController extends parentController {
 
                     $header = $this->getHeader();
 
-                    ob_start();
-                    require (VIEWS.'Utilisateur/utilisateurInscriptionReussiteView.php');
-                    $contenu = ob_get_clean();
+                    $contenu = $this->loadView(VIEWS.'Utilisateur/utilisateurInscriptionReussiteView.php');
 
                     $footer = $this->getFooter();
 
@@ -46,17 +44,15 @@ class utilisateurController extends parentController {
      * @return [type]            [description]
      */
     public function connexionAffichageAction(array $error = null){
-            $titre = 'Connexion';
+        $titre = 'Connexion';
 
-                    $header = $this->getHeader();
+        $header = $this->getHeader();
 
-                    ob_start();
-                    require (VIEWS.'Utilisateur/utilisateurConnexionView.php');
-                    $contenu = ob_get_clean();
+        $contenu = $this->loadView(VIEWS.'Utilisateur/utilisateurConnexionView.php');
 
-                    $footer = $this->getFooter();
+        $footer = $this->getFooter();
 
-                    require(COMMON);
+        require(COMMON);
     }
 
     /**
@@ -87,7 +83,7 @@ class utilisateurController extends parentController {
                 $this->inscriptionValideeAffichageAction();
             }
             else{
-                //Sinon on appelle la view qui indique que l'enregistrement 'na pas pu être effectue
+                //Sinon on appelle la view qui indique que l'enregistrement n'a pas pu être effectue
                 include('index.php?controller=error&action=errorInscription');
             }
         }

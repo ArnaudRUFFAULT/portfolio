@@ -7,6 +7,7 @@
     if(empty($_SESSION['portfolio']['user'])){ 
         echo '<p>';
             echo '<a href="index.php?controller=utilisateur&action=connexionAffichage">Se connecter</a>';
+            echo '<br />';
             echo '<a href="index.php?controller=utilisateur&action=inscriptionAffichage">S\'inscrire</a>';
         echo '</p>';
      }

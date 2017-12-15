@@ -140,10 +140,13 @@ class inscriptionHandler extends formHandler{
 					if($model->checkMailBDD($this->mail)){
 						//On a fait toutes les verifications, pas d'erreurs
 					}
+					else{
+						$this->error['mail'] = 'Cet Email est déjà utilisé, veuiller vous connecter au compte associé';
+					}
 				}
 				//Si il existe deja en BDD on crée un message d'erreur
 				else{
-					$this->error['mail'] = 'Cet Email est déjà utilisé, veuiller vous connecter au compte associé';
+					$this->error['mail'] = 'Cet Email n\'est pas valide';
 				}
 			}
 			//Si il est pas valide on crée un message d'erreur

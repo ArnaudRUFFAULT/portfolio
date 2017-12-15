@@ -97,5 +97,18 @@ abstract class parentController extends coreController{
 			$footer = ob_get_clean();
 			return $footer;
 	}
+
+	protected function loadView($nameView, $variables = array(), $noBuffer = false){
+		extract($variables);
+		if($noBuffer){
+			include($nameView);
+			return true;
+		}
+		else{
+			ob_start();
+        	require ($nameView);
+        	return ob_get_clean();
+		}
+	}
 }
 		

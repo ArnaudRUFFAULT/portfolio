@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 30 Octobre 2017 à 11:14
+-- Généré le :  Ven 15 Décembre 2017 à 11:27
 -- Version du serveur :  10.1.19-MariaDB
 -- Version de PHP :  7.0.13
 
@@ -30,6 +30,7 @@ CREATE TABLE `article` (
   `a_id` int(11) NOT NULL,
   `a_date` date NOT NULL,
   `a_titre` varchar(60) DEFAULT NULL,
+  `a_description` text NOT NULL,
   `a_texte` mediumtext,
   `a_lien` varchar(250) DEFAULT NULL,
   `a_validation` tinyint(1) DEFAULT NULL,
@@ -41,22 +42,22 @@ CREATE TABLE `article` (
 -- Contenu de la table `article`
 --
 
-INSERT INTO `article` (`a_id`, `a_date`, `a_titre`, `a_texte`, `a_lien`, `a_validation`, `a_user_fk`, `a_categorie_fk`) VALUES
-(1, '2017-10-17', 'HTML5/CSS3', 'Je sais faire du CSS HTML', NULL, 1, NULL, 1),
-(2, '2013-10-17', 'Réalisation 1', 'Ceci est ma réalisation 1', '', 1, NULL, 3),
-(3, '2015-10-01', 'Réalisation 2', 'Ceci est ma réalisation 2', NULL, 1, NULL, 3),
-(4, '2016-10-03', 'Réalisation 3', 'Ceci est ma réalisation 3', NULL, 1, NULL, 3),
-(5, '2017-02-17', 'Réalisation 4', 'Ceci est ma réalisation 4', NULL, 1, NULL, 3),
-(6, '2017-10-31', 'Réalisation 5', 'Ceci est ma réalisation 5', NULL, 1, NULL, 3),
-(7, '2017-10-23', 'Réalisation 6', 'Ceci est ma réalisation 6', NULL, 0, NULL, 3),
-(8, '2017-10-04', 'PHP', 'Je sais faire du PHP', NULL, 1, NULL, 2),
-(9, '2017-10-01', 'Trello', 'Je sais utiliser Trello', NULL, 1, NULL, 4),
-(10, '0000-00-00', 'HTML5/CSS3', NULL, NULL, 1, NULL, 7),
-(11, '0000-00-00', 'POO', NULL, NULL, 1, NULL, 7),
-(12, '0000-00-00', 'Stage de Microbiologie Master 2', 'Université Montpellier II', NULL, 1, NULL, 6),
-(13, '0000-00-00', 'Stage de Microbiologie Master 1', 'Faculté de pharmacie , Montpellier', NULL, 1, NULL, 6),
-(14, '0000-00-00', 'Formation Développement WEB', 'Titre professionel du ministère de l’emploi\r\nObjectif 3W, Montferriez-sur-Lez', NULL, 1, NULL, 5),
-(15, '0000-00-00', 'Master Biologie Santé, acquis', 'Université Montpellier II', NULL, 1, NULL, 5);
+INSERT INTO `article` (`a_id`, `a_date`, `a_titre`, `a_description`, `a_texte`, `a_lien`, `a_validation`, `a_user_fk`, `a_categorie_fk`) VALUES
+(1, '2017-10-17', 'HTML5/CSS3', '', 'Je sais faire du CSS HTML', NULL, 1, NULL, 1),
+(2, '2013-10-17', 'MiniChat', 'Création d''un minichat dans le cadre de la formation objectif 3W', 'Cet exercice avait pour objectif de travailler an ajax. Il fallait faire un sorte de pouvoir afficher l''historique de la conversation à partir sans rafraîchir la page.', 'https://github.com/ArnaudRUFFAULT/Formation/tree/master/miniChat', 1, NULL, 3),
+(3, '2015-10-01', 'Jeu de la Vie', 'Mini Jeu qui permet de créer des motifs dans une grille', 'Le jeu de la vie a été codé dans la cadre de la formation Objectif 3W. Cet exercice avait pour objectif de travailler le javascript, et notamment les notion d''évènement.', 'https://github.com/ArnaudRUFFAULT/Formation/tree/master/JeuDeLaVie', 1, NULL, 3),
+(4, '2016-10-03', 'Réalisation 3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolorem modi ', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolorem modi laboriosam repellendus necessitatibus, quaerat neque consectetur, deleniti perspiciatis amet, reprehenderit eveniet, adipisci minima. Quisquam obcaecati dignissimos veritatis officia excepturi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolorem modi laboriosam repellendus necessitatibus, quaerat neque consectetur, deleniti perspiciatis amet, reprehenderit eveniet, adipisci minima. Quisquam obcaecati dignissimos veritatis officia excepturi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolorem modi laboriosam repellendus necessitatibus, quaerat neque consectetur, deleniti perspiciatis amet, reprehenderit eveniet, adipisci minima. Quisquam obcaecati dignissimos veritatis officia excepturi.', NULL, 1, NULL, 3),
+(5, '2017-02-17', 'Réalisation 4', 'Lorem ipsum dolor excepturi.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolorem modi laboriosam repellendus necessitatibus, quaerat neque consectetur, deleniti perspiciatis elit. Rem dolorem modi laboriosam repellendus necessitatibus, quaerat neque consectetur, deleniti perspiciatis amet, reprehenderit eveniet, adipisci minima. Quisquam obcaecati dignissimos veritatis officia excepturi.', NULL, 1, NULL, 3),
+(6, '2017-10-31', 'Réalisation 5', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam obcaecati dignissimos veritatis officia excepturi.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolorem modi laboriosam repellendus necessitatibus, quaerat neque consectetur, deleniti perspiciatis amet, reprehenderit eveniet, adipisci minima. Quisquam obcaecati dignissimos veritatis officia excepturi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolorem modi laboriosam repellendus necessitatibus, quaerat neque consectetur, deleniti perspiciatis amet, reprehenderit eveniet, adipisci minima. Quisquam obcaecati dignissimos veritatis officia excepturi.5', NULL, 1, NULL, 3),
+(7, '2017-10-23', 'Réalisation 6', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolorem modi laboriosam repelficia excepturi.', 'Ceci eLorem ipsum dolor sit amet, consectetur adipisicing elit. Rem dolorem modi laboriosam repellendus necessitatibus, quaerat neque consectetur, deleniti perspiciatis amet, reprehenderit eveniet, adipisci minima. Quisquam obcaecati dignissimos veritatis officia excepturi. 6', NULL, 0, NULL, 3),
+(8, '2017-10-04', 'PHP', '', 'Je sais faire du PHP', NULL, 1, NULL, 2),
+(9, '2017-10-01', 'Trello', '', 'Je sais utiliser Trello', NULL, 1, NULL, 4),
+(10, '0000-00-00', 'HTML5/CSS3', '', NULL, NULL, 1, NULL, 7),
+(11, '0000-00-00', 'POO', '', NULL, NULL, 1, NULL, 7),
+(12, '0000-00-00', 'Stage de Microbiologie Master 2', '', 'Université Montpellier II', NULL, 1, NULL, 6),
+(13, '0000-00-00', 'Stage de Microbiologie Master 1', '', 'Faculté de pharmacie , Montpellier', NULL, 1, NULL, 6),
+(14, '0000-00-00', 'Formation Développement WEB', '', 'Titre professionel du ministère de l’emploi\r\nObjectif 3W, Montferriez-sur-Lez', NULL, 1, NULL, 5),
+(15, '0000-00-00', 'Master Biologie Santé, acquis', '', 'Université Montpellier II', NULL, 1, NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -300,6 +301,17 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`u_id`, `u_nom`, `u_prenom`, `u_pseudo`, `u_mail`, `u_password`, `u_newsletter`, `u_grade_fk`) VALUES
+(17, 'RUFFAULT', 'Arnaud', 'Criko', 'arnaud.ruffault@hotmail.fr', '$2y$10$JFy99TGeYCaeGpBYRZdJBOoSPj5gVLG9njhWIOzcptllZO5G3iZ2i', 0, 4),
+(18, 'Ronan', 'RUFFAULT', 'Ronancelt', 'ronan@hotmail.fr', '$2y$10$YaDJ4EEvaLVg6r0syzN/OOlJOTM2qR/RHz.Bg6dqw7SEDgvcG7cYC', 0, 4),
+(19, 'POLICE', 'mimi', 'miO3w', 'mimi@o3w.fr', '$2y$10$BeoFK9BVCTnRgIq7MEM2Vu7p9EZTeG.jd4BM.BcCNq5XmUXRhBAzm', 0, 4),
+(20, 'nono', 'nono', 'nono', 'nono@nono.nono', '$2y$10$uGg3lbZzj0AJvSsIB.aRy.Sufgd5oyViZsChTLobAErt.8MGY2SBS', 0, 4),
+(23, 'nono', 'nono', 'nono', 'non2o@nono.nono', '$2y$10$3OP77PUdS.uLnNjpeCasC.QT3xhf6ZEFYBLBXwZnguZjyLa5SWAYu', 0, 4);
+
+--
 -- Index pour les tables exportées
 --
 
@@ -381,6 +393,7 @@ ALTER TABLE `section`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`u_id`),
+  ADD UNIQUE KEY `u_mail` (`u_mail`),
   ADD KEY `FK_user_g_identifiant` (`u_grade_fk`);
 
 --
@@ -441,7 +454,7 @@ ALTER TABLE `section`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- Contraintes pour les tables exportées
 --

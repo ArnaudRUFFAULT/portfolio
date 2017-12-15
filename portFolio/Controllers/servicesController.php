@@ -23,11 +23,11 @@ class servicesController extends parentController {
         $header = $this->getHeader();
 
         $model = new articleModel();
-        $mesServices = $model->getServicesBDD(5);
 
-        ob_start();
-        require (VIEWS.'Services/servicesView.php');
-        $contenu = ob_get_clean();
+        $variables = array();
+        $variables['mesServices'] = $model->getServicesBDD();
+
+        $contenu = $this->loadView(VIEWS.'Services/servicesView.php', $variables);
 
         $footer = $this->getFooter();
 

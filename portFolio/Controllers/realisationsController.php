@@ -19,13 +19,31 @@ class realisationsController extends parentController {
     public function afficherRealisationsAction(){
         $titre = ucfirst($this->section->getLibelle());
 
-        $mesRealisations = $this->getRealisations();
+        $header = $this->getHeader();
+
+        $variables = array();
+        $variables['mesRealisations'] = $this->getRealisations();
+
+        $contenu = $this->loadView(VIEWS.'Realisations/RealisationsView.php', $variables);
+
+
+        $footer = $this->getFooter();
+
+        require(COMMON);
+
+    }
+
+    public function afficherFicheRealisationAction(){
+        $titre = ucfirst($this->section->getLibelle());
+
+        $model = new articleModel();
 
         $header = $this->getHeader();
 
-        ob_start();
-        require (VIEWS.'Realisations/RealisationsView.php');
-        $contenu = ob_get_clean();
+        $variables = array();
+        $variables['maRealisation'] = $model->getFicheRealisationBDD($this->parameters['id']);
+
+        $contenu = $this->loadView(VIEWS.'Realisations/ficheRealisationView.php', $variables);
 
         $footer = $this->getFooter();
 
